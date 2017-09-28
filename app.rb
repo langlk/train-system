@@ -55,3 +55,12 @@ patch("/trains/:id/edit") do
     erb(:errors)
   end
 end
+
+delete("/trains/:id/delete") do
+  @train = Train.find(params[:id].to_i)
+  if @train.delete
+    redirect '/trains'
+  else
+    erb(:errors)
+  end
+end

@@ -10,6 +10,7 @@ before do
 end
 
 get('/') do
+  @section = 'home'
   erb(:index)
 end
 
@@ -25,11 +26,13 @@ post('/logout') do
 end
 
 get('/trains') do
+  @section = 'trains'
   @trains = Train.all
   erb(:trains)
 end
 
 post('/add-train') do
+  @section = 'trains'
   train = Train.new({name: params.fetch("name")})
   if train.save
     redirect '/trains'
@@ -40,17 +43,20 @@ post('/add-train') do
 end
 
 get('/trains/:id') do
+  @section = 'trains'
   @train = Train.find(params[:id].to_i)
   @cities = City.all
   erb(:train)
 end
 
 get('/trains/:id/edit') do
+  @section = 'trains'
   @train = Train.find(params[:id].to_i)
   erb(:train_edit)
 end
 
 patch("/trains/:id/edit") do
+  @section = 'trains'
   @train = Train.find(params[:id].to_i)
   if @train.update({name: params.fetch("name")})
     redirect '/trains/' + @train.id.to_s
@@ -61,6 +67,7 @@ patch("/trains/:id/edit") do
 end
 
 delete("/trains/:id/delete") do
+  @section = 'trains'
   @train = Train.find(params[:id].to_i)
   if @train.delete
     redirect '/trains'
@@ -71,11 +78,13 @@ delete("/trains/:id/delete") do
 end
 
 get('/cities') do
+  @section = 'cities'
   @cities = City.all
   erb(:cities)
 end
 
 post('/add-city') do
+  @section = 'cities'
   @city = City.new({name: params['name']})
   if @city.save
     redirect '/cities'
@@ -86,17 +95,20 @@ post('/add-city') do
 end
 
 get('/cities/:id') do
+  @section = 'cities'
   @trains = Train.all
   @city = City.find(params[:id].to_i)
   erb(:city)
 end
 
 get('/cities/:id/edit') do
+  @section = 'cities'
   @city = City.find(params[:id].to_i)
   erb(:city_edit)
 end
 
 patch('/cities/:id/edit') do
+  @section = 'cities'
   @city = City.find(params[:id].to_i)
   if @city.update({name: params['name']})
     redirect '/cities/' + @city.id.to_s
@@ -107,6 +119,7 @@ patch('/cities/:id/edit') do
 end
 
 delete('/cities/:id/delete') do
+  @section = 'cities'
   @city = City.find(params[:id].to_i)
   if @city.delete
     redirect '/cities'
@@ -117,6 +130,7 @@ delete('/cities/:id/delete') do
 end
 
 post('/add-stop') do
+  @section = 'trains'
   @stop = Stop.new({
     departure: Time.parse(params['departure']),
     city_id: params['city'].to_i,
@@ -131,16 +145,19 @@ post('/add-stop') do
 end
 
 get ('/stops/:id') do
+  @section = 'trains'
   @stop = Stop.find(params[:id].to_i)
   erb(:stop)
 end
 
 get ('/stops/:id/edit') do
+  @section = 'trains'
   @stop = Stop.find(params[:id].to_i)
   erb(:stop_edit)
 end
 
 patch ('/stops/:id/edit') do
+  @section = 'trains'
   @stop = Stop.find(params[:id].to_i)
   if @stop.update({depature: Time.parse(params['departure'])})
     redirect '/stops/' + @stop.id.to_s
@@ -151,6 +168,7 @@ patch ('/stops/:id/edit') do
 end
 
 delete('/stops/:id/delete') do
+  @section = 'trains'
   @stop = Stop.find(params[:id].to_i)
   if @stop.delete
     redirect '/trains/' + @stop.train_id.to_s
@@ -161,6 +179,7 @@ delete('/stops/:id/delete') do
 end
 
 get('/tickets') do
+  @section = 'tickets'
   @trains = Train.all
   @tickets = Ticket.all
   if params["train"]
@@ -170,6 +189,7 @@ get('/tickets') do
 end
 
 post('/buy-ticket') do
+  @section = 'tickets'
   @ticket = Ticket.new({train_id: params.fetch("train").to_i, start_city_id: params.fetch("start_city").to_i, end_city_id: params.fetch("end_city").to_i})
   if @ticket.save
     redirect '/ticket-success/' + @ticket.id.to_s
@@ -180,6 +200,7 @@ post('/buy-ticket') do
 end
 
 get('/ticket-success/:id') do
+  @section = 'tickets'
   @ticket = Ticket.find(params[:id].to_i)
   erb(:ticket_success)
 end

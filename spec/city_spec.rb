@@ -20,4 +20,14 @@ describe('City') do
       expect(city.trains).to eq([train1, train2])
     end
   end
+
+  describe('#destroy') do
+    it "destroys all stops for that city before deleting" do
+      city = City.create({name: "Seattle"})
+      train = Train.create({name: "Hogwarts Express"})
+      stop = Stop.create({departure: Time.now, city_id: city.id, train_id: train.id})
+      city.destroy
+      expect(Stop.all).to(eq([]))
+    end
+  end
 end

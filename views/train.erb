@@ -1,0 +1,16 @@
+<h2><%= @train.name %></h2>
+
+<% if @user == 'admin' %>
+  <h5><a href="/trains/<%= @train.id %>/edit">Edit</a></h5>
+<% end %>
+
+<% if @train.stops.any? %>
+  <h3>Stops</h3>
+  <ul>
+    <% @trains.stops.each do |stop| %>
+      <li><a href="/stops/<%=stop.id %>"><%= stop.departure %> - <%= stop.city.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no stops for this train.</p>
+<% end %>

@@ -36,3 +36,8 @@ post('/add-train') do
     erb(:errors)
   end
 end
+
+get('/trains/:id') do
+  @train = Train.find(params[:id].to_i)
+  erb(:train)
+end

@@ -1,0 +1,10 @@
+<h2>Edit Train</h2>
+
+<form action="/trains/<%= @train.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" class="form-control" value="<%=@train.name%>">
+  </div>
+  <button type="submit" name="button" class="btn">Submit</button>
+</form>

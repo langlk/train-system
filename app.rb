@@ -41,3 +41,17 @@ get('/trains/:id') do
   @train = Train.find(params[:id].to_i)
   erb(:train)
 end
+
+get('/trains/:id/edit') do
+  @train = Train.find(params[:id].to_i)
+  erb(:train_edit)
+end
+
+patch("/trains/:id/edit") do
+  @train = Train.find(params[:id].to_i)
+  if @train.update({name: params.fetch("name")})
+    redirect '/trains/' + @train.id.to_s
+  else
+    erb(:errors)
+  end
+end

@@ -22,3 +22,17 @@ post('/logout') do
   session.clear
   redirect '/'
 end
+
+get('/trains') do
+  @trains = Train.all
+  erb(:trains)
+end
+
+post('/add-train') do
+  train = Train.new({name: params.fetch("name")})
+  if train.save
+    redirect '/trains'
+  else
+    erb(:errors)
+  end
+end

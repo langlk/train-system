@@ -1,0 +1,23 @@
+<h2>Trains</h2>
+
+<% if @trains.any? %>
+  <ul>
+    <% @trains.each do |train| %>
+      <li><a href="/trains/<%= train.id %>"><%= train.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no trains.</p>
+<% end %>
+
+<% if @user == 'admin' %>
+  <h3>Add a train</h3>
+  <form action="/add-train" method="post">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" class="form-control">
+    </div>
+    <button type="submit" name="button" class="btn">Submit</button>
+  </form>
+
+<% end %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="js/scripts.js" charset="utf-8"></script>
+
+    </script>
+    <title>Trains</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Epicodus Trains</h1>
+      </div>
+      <ul class="nav nav-pills">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/trains">Trains</a></li>
+        <li><a href="/cities">Cities</a></li>
+      </ul>
+      <%= yield %>
+    </div>
+  </body>
+</html>

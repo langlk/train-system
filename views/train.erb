@@ -7,10 +7,32 @@
 <% if @train.stops.any? %>
   <h3>Stops</h3>
   <ul>
-    <% @trains.stops.each do |stop| %>
-      <li><a href="/stops/<%=stop.id %>"><%= stop.departure %> - <%= stop.city.name %></a></li>
+    <% @train.stops.each do |stop| %>
+      <li><a href="/stops/<%=stop.id %>"><%= stop.departure.strftime('%I:%M %p %Z')%> - <%= stop.city.name %></a></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are currently no stops for this train.</p>
+<% end %>
+
+<% if @user == 'admin'%>
+  <h3>Add stop for this train</h3>
+  <form action="/add-stop" method="post">
+    <input type="hidden" name="train" value="<%= @train.id %>">
+    <div class="form-group">
+      <% if @cities.any? %>
+        <select class="form-control" name="city">
+          <% @cities.each do |city| %>
+            <option value="<%= city.id %>"><%= city.name %></option>
+          <% end %>
+        </select>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <label for="departure">Time</label>
+      <input type="time" name="departure" class="form-control">
+    </div>
+    <button type="submit" name="button" class="btn">Add Stop</button>
+  </form>
+
 <% end %>

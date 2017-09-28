@@ -1,0 +1,16 @@
+<h2>Edit Stop</h2>
+
+
+<form action="/stops/<%= @stop.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="departure">Time</label>
+    <input type="time" name="departure" value="<%= @stop.departure %>" class="form-control">
+  </div>
+  <button type="submit" name="button" class="btn">Update</button>
+</form>
+
+<form action="/stops/<%= @stop.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" name="button" class="btn btn-danger">Delete</button>
+</form>

@@ -134,3 +134,28 @@ get ('/stops/:id') do
   @stop = Stop.find(params[:id].to_i)
   erb(:stop)
 end
+
+get ('/stops/:id/edit') do
+  @stop = Stop.find(params[:id].to_i)
+  erb(:stop_edit)
+end
+
+patch ('/stops/:id/edit') do
+  @stop = Stop.find(params[:id].to_i)
+  if @stop.update({depature: Time.parse(params['departure'])})
+    redirect '/stops/' + @stop.id.to_s
+  else
+    @error_type = @stop
+    erb(:errors)
+  end
+end
+
+delete('/stops/:id/delete') do
+  @stop = Stop.find(params[:id].to_i)
+  if @stop.delete
+    redirect '/trains/' + @stop.train_id.to_s
+  else
+    @error_type = @stop
+    erb(:errors)
+  end
+end

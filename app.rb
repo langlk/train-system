@@ -33,6 +33,7 @@ post('/add-train') do
   if train.save
     redirect '/trains'
   else
+    @error_type = train
     erb(:errors)
   end
 end
@@ -52,6 +53,7 @@ patch("/trains/:id/edit") do
   if @train.update({name: params.fetch("name")})
     redirect '/trains/' + @train.id.to_s
   else
+    @error_type = @train
     erb(:errors)
   end
 end
@@ -61,6 +63,7 @@ delete("/trains/:id/delete") do
   if @train.delete
     redirect '/trains'
   else
+    @error_type = @train
     erb(:errors)
   end
 end
@@ -75,6 +78,7 @@ post('/add-city') do
   if @city.save
     redirect '/cities'
   else
+    @error_type = @city
     erb(:errors)
   end
 end
@@ -94,6 +98,7 @@ patch('/cities/:id/edit') do
   if @city.update({name: params['name']})
     redirect '/cities/' + @city.id.to_s
   else
+    @error_type = @city
     erb(:errors)
   end
 end
@@ -103,6 +108,7 @@ delete('/cities/:id/delete') do
   if @city.delete
     redirect '/cities'
   else
+    @error_type = @city
     erb(:errors)
   end
 end

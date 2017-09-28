@@ -1,0 +1,28 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Fugaz One', cursive;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+form {
+  max-width: 300px;
+}
+
+ul.nav-pills {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket-details p {
+  color: #888888;
+}
+
+strong {
+  color: black
+}

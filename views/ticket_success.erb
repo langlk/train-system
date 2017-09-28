@@ -1,6 +1,8 @@
 <h2>Success!</h2>
 <h5>Your ticket details are below:</h5>
 
-<p><strong>Train: </strong><%= @ticket.train.name %></p>
-<p><strong>Departing: </strong><%= @ticket.start_city.name %></p>
-<p><strong>Arriving: </strong><%= @ticket.end_city.name %></p>
+<div class="ticket-details">
+  <p><strong>Train: </strong><%= @ticket.train.name %></p>
+  <p><strong>Departing: </strong><%= @ticket.start_city.name %></p>
+  <p><strong>Arriving: </strong><%= @ticket.end_city.name %></p>
+</div>

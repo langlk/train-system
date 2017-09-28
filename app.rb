@@ -11,3 +11,14 @@ end
 get('/') do
   erb(:index)
 end
+
+post('/login') do
+  session[:id] = params.fetch("username")
+  password = params.fetch("password")
+  redirect '/'
+end
+
+post('/logout') do
+  session.clear
+  redirect '/'
+end

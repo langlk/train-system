@@ -1,4 +1,5 @@
 require("bundler/setup")
+require "pry"
 Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -84,6 +85,7 @@ post('/add-city') do
 end
 
 get('/cities/:id') do
+  @trains = Train.all
   @city = City.find(params[:id].to_i)
   erb(:city)
 end
@@ -111,4 +113,23 @@ delete('/cities/:id/delete') do
     @error_type = @city
     erb(:errors)
   end
+end
+
+post('/add-stop') do
+  @stop = Stop.new({
+    departure: Time.parse(params['departure']),
+    city_id: params['city'].to_i,
+    train_id: params['train'].to_i
+  })
+  if @stop.save
+    redirect '/stops/' + @stop.id.to_s
+  else
+    @error_type = @stop
+    erb(:errors)
+  end
+end
+
+get ('/stops/:id') do
+  @stop = Stop.find(params[:id].to_i)
+  erb(:stop)
 end

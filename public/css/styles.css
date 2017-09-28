@@ -1,5 +1,20 @@
 body {
   font-family: 'Montserrat', sans-serif;
+  background-image: url("../img/bg.jpeg");
+  background-size: auto 100vh;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.container {
+  max-width: 600px;
+  margin-left: 10%;
+  margin-right: auto;
+  background-color: rgba(255, 255, 255, 0.59);
+  padding-bottom: 2em;
+  margin-top: 2em;
+  border-radius: 5px;
 }
 
 h1, h2, h3 {

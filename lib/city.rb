@@ -6,9 +6,6 @@ class City < ActiveRecord::Base
   validates :name, presence: true
   before_destroy :destroy_stops
 
-
-
-
   private
 
   def destroy_stops

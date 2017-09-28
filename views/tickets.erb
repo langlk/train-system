@@ -1,0 +1,52 @@
+<h2>Tickets</h2>
+
+<% if @user == 'admin' %>
+  <% if @tickets.any? %>
+    <ul>
+      <% @tickets.each do |ticket| %>
+        <li><%= ticket.train.name %>: <%= ticket.start_city.name %> to <%= ticket.end_city.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <h3>Purchase a ticket</h3>
+  <% if !@train %>
+    <form action="/tickets">
+      <div class="form-group">
+        <select class="form-control" name="train">
+          <% @trains.each do |train| %>
+            <option value="<%= train.id%>"><%= train.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <button type="submit" name="button" class="btn">Submit</button>
+    </form>
+  <% end %>
+
+  <% if @train %>
+    <form action="/buy-ticket" method="post">
+      <div class="form-group">
+        <select class="form-control" name="train">
+          <option value="<%= @train.id%>"><%= @train.name %></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="start_city">Starting City</label>
+        <select class="form-control" name="start_city">
+          <% @train.cities.each do |city| %>
+            <option value="<%= city.id %>"><%= city.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="end_city">Ending City</label>
+        <select class="form-control" name="end_city">
+          <% @train.cities.each do |city| %>
+            <option value="<%= city.id %>"><%= city.name %></option>
+          <% end %>
+        </select>
+      </div>
+      <button type="submit" name="button" class="btn">Order Ticket</button>
+    </form>
+  <% end %>
+<% end %>

@@ -159,3 +159,27 @@ delete('/stops/:id/delete') do
     erb(:errors)
   end
 end
+
+get('/tickets') do
+  @trains = Train.all
+  @tickets = Ticket.all
+  if params["train"]
+    @train = Train.find(params.fetch("train").to_i)
+  end
+  erb(:tickets)
+end
+
+post('/buy-ticket') do
+  @ticket = Ticket.new({train_id: params.fetch("train").to_i, start_city_id: params.fetch("start_city").to_i, end_city_id: params.fetch("end_city").to_i})
+  if @ticket.save
+    redirect '/ticket-success/' + @ticket.id.to_s
+  else
+    @error_type = @ticket
+    erb(:errors)
+  end
+end
+
+get('/ticket-success/:id') do
+  @ticket = Ticket.find(params[:id].to_i)
+  erb(:ticket_success)
+end

@@ -1,0 +1,22 @@
+<h2>Cities</h2>
+
+<% if @cities.any? %>
+  <ul>
+    <% @cities.each do |city| %>
+      <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no cities.</p>
+<% end %>
+
+<% if @user == "admin" %>
+  <h3>Add a City</h3>
+  <form action="/add-city" method="post">
+    <div class="form-group">
+      <label for="name">City Name</label>
+      <input type="text" name="name" class="form-control">
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+<% end %>

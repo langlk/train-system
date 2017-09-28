@@ -64,3 +64,22 @@ delete("/trains/:id/delete") do
     erb(:errors)
   end
 end
+
+get('/cities') do
+  @cities = City.all
+  erb(:cities)
+end
+
+post('/add-city') do
+  @city = City.new({name: params['name']})
+  if @city.save
+    redirect '/cities'
+  else
+    erb(:errors)
+  end
+end
+
+get('/cities/:id') do
+  @city = City.find(params[:id].to_i)
+  erb(:city)
+end

@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 
-class Train
+class Train < ActiveRecord::Base
+  has_many :stops
+  has_many :cities, through: :stops
 end

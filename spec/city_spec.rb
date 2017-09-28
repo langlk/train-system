@@ -3,6 +3,13 @@
 require 'spec_helper'
 
 describe('City') do
+  describe('#save') do
+    it "does not allow a blank name" do
+      city = City.new({name: ''})
+      expect(city.save).to eq(false)
+    end
+  end
+
   describe '#trains' do
     it "returns all trains that stop in a city" do
       city = City.create({name: "Seattle"})

@@ -83,3 +83,26 @@ get('/cities/:id') do
   @city = City.find(params[:id].to_i)
   erb(:city)
 end
+
+get('/cities/:id/edit') do
+  @city = City.find(params[:id].to_i)
+  erb(:city_edit)
+end
+
+patch('/cities/:id/edit') do
+  @city = City.find(params[:id].to_i)
+  if @city.update({name: params['name']})
+    redirect '/cities/' + @city.id.to_s
+  else
+    erb(:errors)
+  end
+end
+
+delete('/cities/:id/delete') do
+  @city = City.find(params[:id].to_i)
+  if @city.delete
+    redirect '/cities'
+  else
+    erb(:errors)
+  end
+end

@@ -5,7 +5,7 @@
   <input type="hidden" name="_method" value="patch">
   <div class="form-group">
     <label for="departure">Time</label>
-    <input type="time" name="departure" value="<%= @stop.departure %>" class="form-control">
+    <input type="time" name="departure" value="<%= @stop.departure_pst.strftime('%H:%M') %>" class="form-control">
   </div>
   <button type="submit" name="button" class="btn">Update</button>
 </form>

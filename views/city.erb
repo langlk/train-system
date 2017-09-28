@@ -8,7 +8,7 @@
 <% if @city.stops.any? %>
   <ul>
     <% @city.stops.each do |stop| %>
-      <li><a href="/stops/<%= stop.id %>"><%= stop.departure.strftime('%I:%M %p %Z') %> - <%= stop.train.name %></a></li>
+      <li><a href="/stops/<%= stop.id %>"><%= stop.departure_pst.strftime('%I:%M %p') %> - <%= stop.train.name %></a></li>
     <% end %>
   </ul>
 <% else %>

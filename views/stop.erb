@@ -6,4 +6,4 @@
 
 <h3>City: <a href="/cities/<%= @stop.city.id %>"><%= @stop.city.name %></a></h3>
 <h3>Train: <a href="/trains/<%= @stop.train.id %>"><%= @stop.train.name %></a></h3>
-<h3>Time: <%= @stop.departure.strftime('%I:%M %p %Z') %></h3>
+<h3>Time: <%= @stop.departure_pst.strftime('%I:%M %p') %></h3>
